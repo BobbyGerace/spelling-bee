@@ -23,7 +23,7 @@ require 'csv'
 
 # Class that runs the algorithm described above
 class Analyzer
-  def initialize(dict_file, out_file, min_words = 50, max_words = 100)
+  def initialize(dict_file, out_file, min_words = 30, max_words = 60)
     @dict_file = dict_file
     @out_file = out_file
     @min_words = min_words
@@ -36,6 +36,7 @@ class Analyzer
     precompute_fingerprints_and_combos!
     compute_combo_stats!
     write_to_csv!
+    # pretty_print
 
     puts "Finished in #{Time.now - start}s"
   end
@@ -163,6 +164,6 @@ class Score
   end
 end
 
-Analyzer.new('english.txt', 'combo_stats.csv').run
+Analyzer.new('dictionary.txt', 'combo_stats.csv', 30, 60).run
 
 
